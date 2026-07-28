@@ -126,6 +126,7 @@
 
   <div class="app-form">
     <form action="https://joy-form-handler.sophia-bb7.workers.dev" method="POST">
+      <input type="hidden" name="lang" value="zh">
       <div class="form-row">
         <div class="form-group">
           <label>孩子英文名 <span class="req">*</span></label>
@@ -139,17 +140,20 @@
       <div class="form-row">
         <div class="form-group">
           <label>孩子年龄 <span class="req">*</span></label>
-          <input type="number" name="child_age" min="5" max="20" required>
+          <input type="number" name="child_age" min="6" max="20" required>
         </div>
         <div class="form-group">
           <label>目前年级 <span class="req">*</span></label>
           <select name="grade_level" required>
             <option value="">请选择年级</option>
-            <option>幼儿园至2年级</option>
-            <option>3至5年级</option>
-            <option>6至8年级</option>
-            <option>9至12年级</option>
-            <option>其他 / 不确定</option>
+            <option>一至三年级</option>
+            <option>四年级</option>
+            <option>五年级</option>
+            <option>六年级</option>
+            <option>七年级</option>
+            <option>八年级</option>
+            <option>九年级</option>
+            <option>十年级</option>
           </select>
         </div>
       </div>
@@ -182,10 +186,10 @@
           <label>期望入学学期 <span class="req">*</span></label>
           <select name="start_term" required>
             <option value="">请选择学期</option>
-            <option>2025年秋季学期（9月）</option>
-            <option>2026年春季学期（1月）</option>
-            <option>2026年秋季学期（9月）</option>
-            <option>其他 / 时间灵活</option>
+            <option>2026年秋季</option>
+            <option>2027年春季</option>
+            <option>2027年夏季</option>
+            <option>2028年秋季</option>
           </select>
         </div>
         <div class="form-group">
@@ -206,7 +210,16 @@
       </div>
       <button type="submit" class="btn-submit">提交申请</button>
     </form>
+    <div id="form-success" style="display:none;background:var(--gold-light);border-left:4px solid var(--gold);border-radius:var(--radius);padding:1.5rem 1.8rem;margin-top:1.5rem;font-size:1rem;">
+      🎉 <strong>感谢您提交申请！</strong>我们将在两个工作日内与您联系。
+    </div>
   </div>
+  <script>
+    if (new URLSearchParams(window.location.search).get('submitted') === '1') {
+      document.querySelector('.app-form form').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    }
+  </script>
 
 </div>
 
