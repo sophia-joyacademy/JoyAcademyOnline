@@ -28,6 +28,19 @@ body {
 a { color: var(--blue); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
+/* ===== TYPOGRAPHY NOTE: digit/capital misalignment =====
+   Georgia (our body serif) renders digits as old-style figures, which
+   sit lower and smaller than capital letters. Any time a digit is
+   mashed directly against a capital letter with no space — e.g. "5C",
+   "5Cs" — the digit visibly droops below the letter.
+   FIX: wrap the whole digit+letter chunk (e.g. "5C" or "5Cs") in
+   <span class="digit-align">...</span> to switch it to a sans-serif
+   font with lining figures, which sit flush with the capital's height.
+   Add an inline color if it needs to match a heading accent (see the
+   "5C Approach" heading on programs.html for an example).
+   Apply this any time new copy introduces a similar digit+letter term. */
+.digit-align { font-family: 'Arial', sans-serif; }
+
 /* ===== NAV ===== */
 nav {
   background: var(--white);
@@ -264,6 +277,36 @@ nav ul li ul li a:hover { background: var(--bg); color: var(--navy); }
 }
 
 .card h3 { font-size: 1rem; margin-top: 0.3rem; margin-bottom: 0.5rem; }
+
+/* ===== ASSESSMENT TYPE CARDS (5C-card style, forced 2x2 grid) ===== */
+.assessment-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.assessment-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+
+.assessment-card h3 {
+  font-size: 1.05rem;
+  color: var(--navy);
+  font-family: 'Georgia', serif;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+
+.assessment-card p {
+  font-size: 0.88rem;
+  color: var(--text);
+  margin: 0;
+}
 
 /* ===== HIGHLIGHT ===== */
 .highlight {
@@ -893,6 +936,245 @@ footer ul li a:hover { color: var(--navy); text-decoration: none; }
   margin: 0;
 }
 
+/* ===== BLOOM'S TAXONOMY ===== */
+.bloom-order-row {
+  display: flex;
+  gap: 1rem;
+  margin: 1.5rem 0 0.5rem;
+  font-family: 'Arial', sans-serif;
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.bloom-order-row span.tag-lower { background: var(--gold-light); color: #7a5c00; border: 1px solid var(--gold); border-radius: 20px; padding: 2px 10px; }
+.bloom-order-row span.tag-higher { background: #EAF2FB; color: var(--navy); border: 1px solid var(--blue); border-radius: 20px; padding: 2px 10px; }
+
+.bloom-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 1.2rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.bloom-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--gold);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.bloom-card-header {
+  padding: 0.85rem 1.1rem;
+  color: var(--navy);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 0.6rem;
+  row-gap: 0.3rem;
+}
+
+.bloom-card-header h3 {
+  font-size: 1.05rem;
+  margin: 0;
+  font-family: 'Georgia', serif;
+}
+
+.bloom-order-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-family: 'Arial', sans-serif;
+  padding: 2px 9px;
+  border-radius: 20px;
+  margin: 0;
+  letter-spacing: 0.03em;
+}
+
+.bloom-card-header .bloom-zh {
+  display: block;
+  flex-basis: 100%;
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-style: italic;
+  font-family: 'Noto Serif SC', serif;
+  margin-top: 0;
+}
+
+.bloom-card-body { padding: 1rem 1.1rem 1.2rem; flex: 1; }
+
+.bloom-order-lower { background: var(--gold-light); color: #7a5c00; border: 1px solid var(--gold); }
+.bloom-order-higher { background: #EAF2FB; color: var(--navy); border: 1px solid var(--blue); }
+
+.bloom-card-body p.bloom-def {
+  font-size: 0.87rem;
+  color: var(--text);
+  margin-bottom: 0.85rem;
+  line-height: 1.6;
+}
+
+.bloom-card-body .bloom-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  font-family: 'Arial', sans-serif;
+  margin-bottom: 0.3rem;
+}
+
+.bloom-card-body .bloom-verbs {
+  font-size: 0.85rem;
+  margin-bottom: 0.9rem;
+  color: var(--text);
+}
+
+.bloom-card-body .bloom-questions {
+  list-style: none;
+  padding: 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+.bloom-card-body .bloom-questions li {
+  margin-bottom: 0.3rem;
+  padding-left: 1.1rem;
+  position: relative;
+  line-height: 1.5;
+}
+
+.bloom-card-body .bloom-questions li::before {
+  content: "?";
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+/* Coursework-to-Bloom's mapping list, reusing highlight visual language */
+.bloom-map {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.4rem 1.4rem;
+  margin: 1.5rem 0;
+}
+
+.bloom-map li {
+  list-style: none;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.92rem;
+}
+
+.bloom-map li:last-child { border-bottom: none; }
+.bloom-map li strong { color: var(--navy); }
+
+.bloom-map li ul {
+  list-style: none;
+  margin: 0.6rem 0 0;
+  padding-left: 1.2rem;
+}
+
+.bloom-map li ul li {
+  border-bottom: none;
+  padding: 0.2rem 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ===== TAXONOMY DETAIL (collapsible sub-category breakdown, no JS needed) ===== */
+.taxonomy-detail {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.9rem 1.2rem;
+  margin: 1rem 0;
+}
+
+.taxonomy-detail summary {
+  cursor: pointer;
+  font-family: 'Arial', sans-serif;
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--navy);
+  outline: none;
+}
+
+.taxonomy-detail summary:focus,
+.taxonomy-detail summary:focus-visible {
+  outline: none;
+}
+
+.taxonomy-detail[open] summary { margin-bottom: 0.6rem; }
+
+.taxonomy-detail .bloom-map { margin: 0; }
+
+/* ===== GRADING WEIGHT TABLE (reuses credit-table look) ===== */
+.grading-table tr.total-row td { font-weight: 700; }
+
+/* ===== BLOOM'S ALIGNMENT TABLE (reuses credit-table look, text columns stay left-aligned) ===== */
+.bloom-align-table th:last-child,
+.bloom-align-table td:last-child {
+  text-align: left;
+}
+
+/* ===== TAXONOMY TABLE (Anderson & Krathwohl 2D grid: knowledge x cognitive process) ===== */
+.taxonomy-table th,
+.taxonomy-table td {
+  text-align: center;
+  vertical-align: top;
+}
+
+.taxonomy-table th:first-child,
+.taxonomy-table td:first-child {
+  text-align: left;
+}
+
+.taxonomy-table tbody th {
+  background: var(--bg);
+  color: var(--navy);
+  font-weight: 700;
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.taxonomy-table td {
+  height: 2.2rem;
+}
+
+.taxonomy-table thead tr:first-child th {
+  border-bottom: none;
+  font-size: 0.75rem;
+  letter-spacing: normal;
+  padding: 0.6rem 0.4rem;
+}
+
+.taxonomy-table thead tr:first-child th:not(:first-child) {
+  white-space: nowrap;
+}
+
+.taxonomy-table .taxonomy-subrow th {
+  border-top: none;
+  background: var(--gold-light);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  color: var(--muted);
+  padding-top: 0.2rem;
+  padding-bottom: 0.6rem;
+}
+
+/* Because the corner cell uses rowspan, the subrow's first actual <th>
+   (e.g. "Recognizing, Recalling") is the DOM :first-child even though it's
+   visually the second column — override so it centers like its siblings. */
+.taxonomy-table .taxonomy-subrow th:first-child {
+  text-align: center;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 700px) {
   nav ul { display: none; }
@@ -900,4 +1182,6 @@ footer ul li a:hover { color: var(--navy); text-decoration: none; }
   .form-row { grid-template-columns: 1fr; }
   .footer-inner { grid-template-columns: 1fr; }
   .motto-card-grid { grid-template-columns: 1fr; }
+  .bloom-grid { grid-template-columns: 1fr; }
+  .assessment-grid { grid-template-columns: 1fr; }
 }
