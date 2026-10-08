@@ -203,6 +203,13 @@
         var options = chat.querySelector('button[aria-label="Options"]');
         if (logo) logo.style.setProperty('display', 'none', 'important');
         if (options) options.style.setProperty('display', 'none', 'important');
+        if (logo && options) {
+          var header = logo.parentElement;
+          while (header && header !== chat && !header.contains(options)) {
+            header = header.parentElement;
+          }
+          if (header && header !== chat) header.style.setProperty('border-bottom', 'none', 'important');
+        }
       }
 
       function move() {
