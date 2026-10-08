@@ -86,9 +86,6 @@
       line-height: 1.6;
       text-align: center;
     }
-    #chat-slot #anything-llm-embed-chat-container div:has(> img[alt="AnythingLLM Logo"]):has(> button[aria-label="Options"]) {
-      display: none !important;
-    }
     .ask-starters { margin-top: 14px; text-align: center; }
     .ask-starters-label { margin: 0 0 0.4rem; font-size: 0.9rem; color: var(--muted); }
     .ask-starters ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem 0.5rem; }
@@ -201,9 +198,27 @@
         }
       }
 
+      function hideWidgetHeader(chat) {
+        var logo = chat.querySelector('img[alt="AnythingLLM Logo"]');
+        var options = chat.querySelector('button[aria-label="Options"]');
+        if (!logo || !options) return;
+
+        var header = logo.parentElement;
+        while (header && header !== chat && !header.contains(options)) {
+          header = header.parentElement;
+        }
+        if (header && header !== chat && !header.querySelector('textarea, input, [role="textbox"]')) {
+          header.style.setProperty('display', 'none', 'important');
+        } else {
+          logo.style.setProperty('display', 'none', 'important');
+          options.style.setProperty('display', 'none', 'important');
+        }
+      }
+
       function move() {
         var chatContainer = document.getElementById('anything-llm-embed-chat-container');
         if (chatContainer && chatContainer.parentNode.parentNode !== slot) slot.appendChild(chatContainer.parentNode);
+        if (chatContainer) hideWidgetHeader(chatContainer);
         localizeChat();
         return !!chatContainer;
       }
