@@ -125,6 +125,19 @@ nav ul li > a.active {
   text-decoration: none;
 }
 
+.ai-badge {
+  display: inline-block;
+  font-size: 0.65em;
+  font-weight: 700;
+  line-height: 1;
+  padding: 3px 6px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  color: #fff;
+  vertical-align: middle;
+  letter-spacing: 0.5px;
+}
+
 /* Dropdown */
 nav ul li ul {
   display: none;
