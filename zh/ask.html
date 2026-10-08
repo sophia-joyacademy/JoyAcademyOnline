@@ -23,7 +23,7 @@
       <li><a href="admissions.html">招生信息</a></li>
       <li><a href="parent-resources.html">家长资源</a></li>
       <li><a href="contact.html">联系我们</a></li>
-      <li><a href="ask.html" class="active">问问美嘉AI</a></li>
+      <li><a href="ask.html" class="active">问问美嘉 <span class="ai-badge">AI</span></a></li>
     </ul>
     <div class="lang-switcher">
       <a href="../ask.html">English</a>
@@ -34,8 +34,7 @@
 </nav>
 
 <div class="hero">
-  <p class="subtitle">你好，我是美嘉<span class="ai-badge">AI</span>，我会陪你一起想一想孩子的学习、成长和未来。</p>
-  <p class="subtitle ask-examples">你可以问我：孩子适合怎样的课程？ · 怎样规划高中阶段的学习？ · 数学、英语应该怎样提高？ · 怎样为大学申请做好准备？ · 选择大学时应该考虑什么？</p>
+  <p class="subtitle">你好，我是美嘉<span class="ai-badge">AI</span>，我会陪你一起想一想，怎样陪孩子成长，也怎样让自己成为更好的父母。</p>
 </div>
 
 <div class="container">
@@ -43,9 +42,21 @@
     data-embed-id="e8f11a95-8f54-4e47-8b35-65951eae43f7"
     data-base-api-url="https://ai.hearthandheight.org/api/embed"
     data-open-on-load="on"
+    data-send-message-text="今天想和美嘉聊些什么？"
     src="https://ai.hearthandheight.org/embed/anythingllm-chat-widget.min.js">
   </script>
   <div id="chat-slot" style="margin-top:12px; border:1px solid #ddd; border-radius:12px; overflow:hidden;"></div>
+  <div class="ask-starters">
+    <p class="ask-starters-label">你可以问我：</p>
+    <ul>
+      <li><button type="button">孩子适合走哪一种国际课程体系：AP、A-Level还是IB？</button></li>
+      <li><button type="button">如何从全中文学习顺利过渡到全英文学习？</button></li>
+      <li><button type="button">从9年级开始，我应该怎样为孩子规划高中四年和大学申请？</button></li>
+      <li><button type="button">选择大学时，排名、专业、费用和就业，应该怎样权衡？</button></li>
+      <li><button type="button">去国外上大学一年大概要花多少钱？怎样做好家庭的费用规划？</button></li>
+      <li><button type="button">孩子大学毕业以后，有机会留在国外工作和生活吗？</button></li>
+    </ul>
+  </div>
   <style>
     .ask-page .hero { padding: 1rem 1.5rem 0.75rem; }
     .ask-page .container { padding-top: 1rem; }
@@ -64,7 +75,28 @@
     }
     #chat-slot { height: clamp(680px, 100vh, 920px); }
     @media (min-width: 769px) { #chat-slot { height: clamp(420px, calc(100vh - 330px), 720px); } }
-    .hero .ask-examples { font-size: 0.85em; max-width: 760px; margin-top: 0.6rem; opacity: 0.9; }
+    .hero .subtitle { max-width: 900px; margin: 0 auto; }
+    #chat-slot .daily-prompt {
+      margin: -0.5rem 1rem 0;
+      padding: 0 0 0.5rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.6;
+      text-align: center;
+    }
+    .ask-starters { margin-top: 14px; text-align: center; }
+    .ask-starters-label { margin: 0 0 0.4rem; font-size: 0.9rem; color: var(--muted); }
+    .ask-starters ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem 0.5rem; }
+    .ask-starters button {
+      font: inherit; font-size: 0.85rem; line-height: 1.5; color: var(--navy);
+      background: none; border: 1px solid var(--border); border-radius: 999px;
+      padding: 0.3rem 0.8rem; cursor: pointer; transition: background 0.15s;
+    }
+    .ask-starters button:hover, .ask-starters button:focus-visible { background: var(--bg); }
+    @media (max-width: 700px) {
+      .ask-starters ul { flex-direction: column; align-items: stretch; }
+      .ask-starters button { text-align: left; border-radius: 10px; }
+    }
     #anything-llm-embed-chat-button-container { display: none !important; }
     #chat-slot > div { height: 100%; }
     #chat-slot .allm-anything-llm-user-message {
@@ -92,16 +124,127 @@
     window.addEventListener('load', function () { setTimeout(function () { window.scrollTo(0, 0); }, 800); });
     (function () {
       var slot = document.getElementById('chat-slot');
+      var emptyHistoryText = '今天想从哪里开始？';
+      var dailyPrompts = [
+        '教育的目标，不只是进入一所好大学，更是帮助孩子找到自己的方向，成为一个能够贡献世界的人。',
+        '孩子将来去哪里上大学很重要，但更重要的是，他将成为怎样的人。',
+        '一份漂亮的大学申请背后，应该有真实的学习、思考、实践与成长。',
+        '选择课程，不只是为了申请大学，也是为了帮助孩子发现自己的兴趣、能力与方向。',
+        'AP、A-Level、IB没有绝对的“最好”，真正重要的是哪一种学习道路更适合孩子。',
+        '高中四年，我们希望孩子获得的，不只是越来越高的成绩，还有越来越清晰的自我认识。',
+        '学习不是把答案记下来，而是学会提问、思考、判断，并勇敢寻找答案。',
+        '真正的深度思考，是愿意从不同角度看问题，也愿意在发现自己错了以后重新思考。',
+        '创造力不只是艺术家的能力，也是面对未知、困难和复杂问题时寻找新道路的勇气。',
+        '自信不是觉得自己什么都会，而是知道自己的不足，也愿意面对困难、继续成长。',
+        '会表达，也会倾听；会坚持自己的想法，也能与别人合作——这些能力会陪伴孩子走得比一场考试更远。',
+        '一个真正有力量的孩子，不只是能够照顾好自己，也愿意看见别人、帮助别人。',
+        '服务别人，不只是课外活动，而是学习责任、合作与爱的过程。',
+        '当孩子开始看见自己的能力是一份可以用来帮助别人的礼物，学习就有了更深的意义。',
+        '感恩让我们看见已经拥有的，敬畏让我们知道自己仍有许多需要学习的，成长让我们一步一步走向更好的自己。',
+        '孩子的成长不是一场短跑。比起一次考试的高低，我们更应该看见他这一年走了多远。',
+        '一个好成绩告诉我们孩子学会了什么，而持续的学习过程，还能告诉我们他是怎样学习、怎样思考、怎样成长的。',
+        '教育需要看见结果，也需要看见过程——那些努力、坚持、尝试、犯错和重新开始，同样值得被看见。',
+        '真正的优秀，不只是比别人走得快，而是在自己的道路上不断成长，并愿意承担责任。',
+        '大学排名可以帮助我们认识学校，但不能替我们决定孩子应该成为怎样的人。',
+        '选择大学时，我们不只是在选择一个学历，也是在选择孩子未来几年学习、生活、成长和服务的环境。',
+        '一个专业真正值得学习，不只是因为它“有前途”，也因为它能够激发孩子学习、思考和创造的热情。',
+        'AI正在改变世界。今天的教育，更需要培养孩子那些不会轻易被时代淘汰的能力。',
+        '世界越来越大，孩子需要的不只是走出去的能力，也需要认识自己、理解他人和承担责任的能力。',
+        '出国留学不是教育的终点，而可能是孩子认识世界、认识自己、学习承担责任的新起点。',
+        '学习得越多，越应该保持谦卑；看见的世界越大，越应该懂得敬畏。',
+        '卓越不是追求完美，而是在每一天认真做好自己能够做好的事，并不断提高自己。',
+        '孩子的未来不应该只用“上哪所大学”来定义。我们更希望他成为一个能够思考、创造、合作、服务的人。',
+        '我们培养孩子成为专业人才，也希望他们拥有专业之外的责任感、品格与使命感。',
+        '愿孩子有能力在世界中找到自己的位置，也有一颗愿意为别人、为社会带来美好与光亮的心。'
+      ];
+      function getDailyPrompt() {
+        var now = new Date();
+        var date = now.getFullYear() + '-' +
+          String(now.getMonth() + 1).padStart(2, '0') + '-' +
+          String(now.getDate()).padStart(2, '0');
+        var hash = 0;
+        for (var i = 0; i < date.length; i += 1) {
+          hash = (hash * 31 + date.charCodeAt(i)) >>> 0;
+        }
+        return dailyPrompts[hash % dailyPrompts.length];
+      }
+      var dailyPrompt = getDailyPrompt();
+
+      function localizeChat() {
+        var chat = slot.querySelector('#anything-llm-embed-chat-container');
+        if (!chat) return;
+        chat.querySelectorAll('textarea, input').forEach(function (input) {
+          if (input.getAttribute('placeholder') === 'Send a message') {
+            input.setAttribute('placeholder', '今天想和美嘉聊些什么？');
+          }
+        });
+        var emptyMessage = Array.prototype.find.call(chat.querySelectorAll('p'), function (paragraph) {
+          return paragraph.textContent.trim() === 'Send a chat to get started.' ||
+            paragraph.textContent.trim() === emptyHistoryText;
+        });
+        if (emptyMessage) {
+          if (emptyMessage.textContent !== emptyHistoryText) emptyMessage.textContent = emptyHistoryText;
+          var promptElement = emptyMessage.parentElement.querySelector('.daily-prompt');
+          if (!promptElement) {
+            promptElement = document.createElement('p');
+            promptElement.className = 'daily-prompt';
+            emptyMessage.insertAdjacentElement('afterend', promptElement);
+          }
+          if (promptElement.textContent !== dailyPrompt) promptElement.textContent = dailyPrompt;
+        } else {
+          chat.querySelectorAll('.daily-prompt').forEach(function (promptElement) { promptElement.remove(); });
+        }
+      }
+
       function move() {
-        var c = document.getElementById('anything-llm-embed-chat-container');
-        if (c && c.parentNode.parentNode !== slot) slot.appendChild(c.parentNode);
-        return !!c;
+        var chatContainer = document.getElementById('anything-llm-embed-chat-container');
+        if (chatContainer && chatContainer.parentNode.parentNode !== slot) slot.appendChild(chatContainer.parentNode);
+        localizeChat();
+        return !!chatContainer;
+      }
+      function watchSlot() {
+        var chatObserver = new MutationObserver(function () { move(); });
+        chatObserver.observe(slot, { childList: true, subtree: true, attributes: true, attributeFilter: ['placeholder'] });
       }
       if (!move()) {
-        var obs = new MutationObserver(function () { if (move()) obs.disconnect(); });
-        obs.observe(document.body, { childList: true, subtree: true });
+        var observer = new MutationObserver(function () {
+          if (move()) {
+            observer.disconnect();
+            watchSlot();
+          }
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+      } else {
+        watchSlot();
       }
+
+      var dailyRefreshTimer;
+      function refreshDailyPrompt() {
+        var nextPrompt = getDailyPrompt();
+        if (nextPrompt !== dailyPrompt) {
+          dailyPrompt = nextPrompt;
+          localizeChat();
+        }
+        var nextMidnight = new Date();
+        nextMidnight.setHours(24, 0, 0, 0);
+        window.clearTimeout(dailyRefreshTimer);
+        dailyRefreshTimer = window.setTimeout(refreshDailyPrompt, nextMidnight.getTime() - Date.now());
+      }
+      refreshDailyPrompt();
+      document.addEventListener('visibilitychange', function () {
+        if (!document.hidden) refreshDailyPrompt();
+      });
     })();
+
+    document.querySelector('.ask-starters').addEventListener('click', function (event) {
+      var button = event.target.closest('button');
+      var input = document.querySelector('#chat-slot textarea');
+      if (!button || !input) return;
+      var setter = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value').set;
+      setter.call(input, button.textContent);
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      input.focus();
+    });
   </script>
 
   <p style="font-size:0.85rem; color:var(--muted); margin-top:16px;">回答由 AI 生成，仅供参考，不能替代专业意见。请不要输入孩子的真实姓名等个人隐私信息。</p>
