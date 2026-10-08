@@ -34,8 +34,7 @@
 </nav>
 
 <div class="hero">
-  <p class="subtitle">Hello, I'm Joy <span class="ai-badge">AI</span>. I'll think alongside you about your child's learning, growth, and future.</p>
-  <p class="subtitle ask-examples">You can ask me: What courses might be right for my child? · How should we plan for high school? · How can my child improve in math and English? · How can we prepare for college applications? · What should we consider when choosing a college?</p>
+  <p class="subtitle">Hello, I'm Joy <span class="ai-badge">AI</span>. I'll walk alongside you as we explore how to support your child's growth—and grow as parents, too.</p>
 </div>
 
 <div class="container">
@@ -43,9 +42,23 @@
     data-embed-id="e8f11a95-8f54-4e47-8b35-65951eae43f7"
     data-base-api-url="https://ai.hearthandheight.org/api/embed"
     data-open-on-load="on"
+    data-no-sponsor="true"
+    data-send-message-text="What would you like to talk about with Joy today?"
+    data-reset-chat-text="Start a new chat"
     src="https://ai.hearthandheight.org/embed/anythingllm-chat-widget.min.js">
   </script>
   <div id="chat-slot" style="margin-top:12px; border:1px solid #ddd; border-radius:12px; overflow:hidden;"></div>
+  <div class="ask-starters">
+    <p class="ask-starters-label">You can ask me:</p>
+    <ul>
+      <li><button type="button">Which international curriculum might be right for my child: AP, A-Level, or IB?</button></li>
+      <li><button type="button">How can my child transition smoothly from learning entirely in Chinese to learning entirely in English?</button></li>
+      <li><button type="button">Starting in ninth grade, how should I plan my child's four years of high school and college applications?</button></li>
+      <li><button type="button">When choosing a college, how should we weigh rankings, majors, costs, and career opportunities?</button></li>
+      <li><button type="button">How much does it generally cost to attend college abroad each year, and how can our family plan for the expense?</button></li>
+      <li><button type="button">After graduating from college, will my child have opportunities to work and live abroad?</button></li>
+    </ul>
+  </div>
   <style>
     .ask-page .hero { padding: 1rem 1.5rem 0.75rem; }
     .ask-page .container { padding-top: 1rem; }
@@ -64,7 +77,28 @@
     }
     #chat-slot { height: clamp(680px, 100vh, 920px); }
     @media (min-width: 769px) { #chat-slot { height: clamp(420px, calc(100vh - 330px), 720px); } }
-    .hero .ask-examples { font-size: 0.85em; max-width: 760px; margin-top: 0.6rem; opacity: 0.9; }
+    .hero .subtitle { max-width: 900px; margin: 0 auto; }
+    #chat-slot .daily-prompt {
+      margin: -0.5rem 1rem 0;
+      padding: 0 0 0.5rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.6;
+      text-align: center;
+    }
+    .ask-starters { margin-top: 14px; text-align: center; }
+    .ask-starters-label { margin: 0 0 0.4rem; font-size: 0.9rem; color: var(--muted); }
+    .ask-starters ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem 0.5rem; }
+    .ask-starters button {
+      font: inherit; font-size: 0.85rem; line-height: 1.5; color: var(--navy);
+      background: none; border: 1px solid var(--border); border-radius: 999px;
+      padding: 0.3rem 0.8rem; cursor: pointer; transition: background 0.15s;
+    }
+    .ask-starters button:hover, .ask-starters button:focus-visible { background: var(--bg); }
+    @media (max-width: 700px) {
+      .ask-starters ul { flex-direction: column; align-items: stretch; }
+      .ask-starters button { text-align: left; border-radius: 10px; }
+    }
     #anything-llm-embed-chat-button-container { display: none !important; }
     #chat-slot > div { height: 100%; }
     #chat-slot .allm-anything-llm-user-message {
@@ -92,16 +126,135 @@
     window.addEventListener('load', function () { setTimeout(function () { window.scrollTo(0, 0); }, 800); });
     (function () {
       var slot = document.getElementById('chat-slot');
+      var emptyHistoryText = 'Where would you like to start today?';
+      var dailyPrompts = [
+        'Education is about more than getting into a good college. It is about helping children find their direction and become people who can contribute to the world.',
+        'Where a child goes to college matters, but who they become matters even more.',
+        'Behind a strong college application should be genuine learning, reflection, practice, and growth.',
+        'Choosing courses is not only about college applications; it is also about helping children discover their interests, abilities, and direction.',
+        'There is no single “best” curriculum among AP, A-Level, and IB. What matters is which path best fits your child.',
+        'Over four years of high school, we hope children gain not only stronger grades but also a clearer understanding of themselves.',
+        'Learning is not just memorizing answers. It is learning to ask questions, think, make judgments, and bravely seek answers.',
+        'Deep thinking means looking at questions from different perspectives and being willing to rethink when we discover we were mistaken.',
+        'Creativity is not only an artistic ability; it is also the courage to find new paths through the unknown, difficulties, and complex problems.',
+        'Confidence does not mean believing you can do everything. It means recognizing what you still need to learn and being willing to face challenges and grow.',
+        'Expressing ourselves and listening, standing by our ideas and working with others—these abilities will take children further than any one exam.',
+        'A truly capable child can care for themselves while also noticing and helping others.',
+        'Serving others is more than an extracurricular activity; it is a way to learn responsibility, cooperation, and love.',
+        'When children see their abilities as gifts they can use to help others, learning takes on a deeper meaning.',
+        'Gratitude helps us see what we have; reverence reminds us how much we still have to learn; growth helps us become better, one step at a time.',
+        'A child’s growth is not a sprint. More than the result of one exam, we should notice how far they have come this year.',
+        'Good grades show us what a child has learned. The ongoing learning process also shows us how they learn, think, and grow.',
+        'Education should recognize both outcomes and the process—the effort, persistence, trying, making mistakes, and beginning again are all worth seeing.',
+        'True excellence is not simply moving faster than others; it is continuing to grow on your own path and being willing to take responsibility.',
+        'College rankings can help us learn about schools, but they cannot decide who our children should become.',
+        'Choosing a college means choosing not just a degree, but an environment where children will learn, live, grow, and serve for years to come.',
+        'A field of study is worth pursuing not only because it has promising career prospects, but also because it inspires a child to learn, think, and create.',
+        'AI is changing the world. Education today must also develop abilities that will endure through changing times.',
+        'As the world grows larger, children need more than the ability to go out into it; they need to know themselves, understand others, and take responsibility.',
+        'Studying abroad is not the end of education. It can be a new beginning for discovering the world and oneself and learning to take responsibility.',
+        'The more we learn, the more humble we should be; the more of the world we see, the more reverence we should have.',
+        'Excellence is not about being perfect. It is about doing our best each day and continuing to improve.',
+        'A child’s future should not be defined only by which college they attend. We hope they become people who can think, create, collaborate, and serve.',
+        'We hope to help children become skilled professionals who also have a sense of responsibility, strong character, and purpose.',
+        'May children find their place in the world and have hearts willing to bring goodness and light to others and to society.'
+      ];
+      function getDailyPrompt() {
+        var now = new Date();
+        var date = now.getFullYear() + '-' +
+          String(now.getMonth() + 1).padStart(2, '0') + '-' +
+          String(now.getDate()).padStart(2, '0');
+        var hash = 0;
+        for (var i = 0; i < date.length; i += 1) {
+          hash = (hash * 31 + date.charCodeAt(i)) >>> 0;
+        }
+        return dailyPrompts[hash % dailyPrompts.length];
+      }
+      var dailyPrompt = getDailyPrompt();
+
+      function localizeChat() {
+        var chat = slot.querySelector('#anything-llm-embed-chat-container');
+        if (!chat) return;
+        chat.querySelectorAll('textarea, input').forEach(function (input) {
+          if (input.getAttribute('placeholder') === 'Send a message') {
+            input.setAttribute('placeholder', 'What would you like to talk about with Joy today?');
+          }
+        });
+        var emptyMessage = Array.prototype.find.call(chat.querySelectorAll('p'), function (paragraph) {
+          return paragraph.textContent.trim() === 'Send a chat to get started.' ||
+            paragraph.textContent.trim() === emptyHistoryText;
+        });
+        if (emptyMessage) {
+          if (emptyMessage.textContent !== emptyHistoryText) emptyMessage.textContent = emptyHistoryText;
+          var promptElement = emptyMessage.parentElement.querySelector('.daily-prompt');
+          if (!promptElement) {
+            promptElement = document.createElement('p');
+            promptElement.className = 'daily-prompt';
+            emptyMessage.insertAdjacentElement('afterend', promptElement);
+          }
+          if (promptElement.textContent !== dailyPrompt) promptElement.textContent = dailyPrompt;
+        } else {
+          chat.querySelectorAll('.daily-prompt').forEach(function (promptElement) { promptElement.remove(); });
+        }
+      }
+
+      function hideWidgetHeader(chat) {
+        var logo = chat.querySelector('img[alt="AnythingLLM Logo"]');
+        var options = chat.querySelector('button[aria-label="Options"]');
+        if (logo) logo.style.setProperty('display', 'none', 'important');
+        if (options) options.style.setProperty('display', 'none', 'important');
+      }
+
       function move() {
-        var c = document.getElementById('anything-llm-embed-chat-container');
-        if (c && c.parentNode.parentNode !== slot) slot.appendChild(c.parentNode);
-        return !!c;
+        var chatContainer = document.getElementById('anything-llm-embed-chat-container');
+        if (chatContainer && chatContainer.parentNode.parentNode !== slot) slot.appendChild(chatContainer.parentNode);
+        if (chatContainer) hideWidgetHeader(chatContainer);
+        localizeChat();
+        return !!chatContainer;
+      }
+      function watchSlot() {
+        var chatObserver = new MutationObserver(function () { move(); });
+        chatObserver.observe(slot, { childList: true, subtree: true, attributes: true, attributeFilter: ['placeholder'] });
       }
       if (!move()) {
-        var obs = new MutationObserver(function () { if (move()) obs.disconnect(); });
-        obs.observe(document.body, { childList: true, subtree: true });
+        var observer = new MutationObserver(function () {
+          if (move()) {
+            observer.disconnect();
+            watchSlot();
+          }
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+      } else {
+        watchSlot();
       }
+
+      var dailyRefreshTimer;
+      function refreshDailyPrompt() {
+        var nextPrompt = getDailyPrompt();
+        if (nextPrompt !== dailyPrompt) {
+          dailyPrompt = nextPrompt;
+          localizeChat();
+        }
+        var nextMidnight = new Date();
+        nextMidnight.setHours(24, 0, 0, 0);
+        window.clearTimeout(dailyRefreshTimer);
+        dailyRefreshTimer = window.setTimeout(refreshDailyPrompt, nextMidnight.getTime() - Date.now());
+      }
+      refreshDailyPrompt();
+      document.addEventListener('visibilitychange', function () {
+        if (!document.hidden) refreshDailyPrompt();
+      });
     })();
+
+    document.querySelector('.ask-starters').addEventListener('click', function (event) {
+      var button = event.target.closest('button');
+      var input = document.querySelector('#chat-slot textarea');
+      if (!button || !input) return;
+      var setter = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value').set;
+      setter.call(input, button.textContent);
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      input.focus();
+    });
   </script>
 
   <p style="font-size:0.85rem; color:var(--muted); margin-top:16px;">AI-generated responses are for informational purposes only and do not replace professional advice. Please do not enter your child's real name or other personal information.</p>
