@@ -1,0 +1,102 @@
+@page { size: Letter; margin: 0.55in; }
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  color: #172330;
+  background: #e9edf0;
+  font-family: Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-size: 10pt;
+  line-height: 1.4;
+}
+.sheet {
+  position: relative;
+  width: 7.4in;
+  height: 9.9in;
+  margin: 24px auto;
+  background: white;
+  break-after: page;
+}
+.sheet:last-child { break-after: auto; }
+header { padding-bottom: 10px; margin-bottom: 12px; text-align: center; }
+.letterhead { display: flex; align-items: center; gap: 12pt; height: 60pt; margin: 0 0 12px 32.4pt; text-align: left; }
+.form-logo { width: 60pt; height: 60pt; object-fit: contain; flex-shrink: 0; }
+.school { font-family: Georgia, serif; font-size: 14pt; font-weight: bold; line-height: 1; color: #00838f; }
+.motto { margin-top: 5pt; font-family: Georgia, serif; font-size: 9pt; line-height: 1; color: #9a7838; white-space: nowrap; }
+h1 { margin: 6px 0 3px; font-size: 16pt; }
+.subtitle { margin: 2px 0 0; font-size: 12pt; }
+.form-title { font-size: 11pt; font-weight: bold; margin-top: 4px; }
+.continued .subtitle { font-size: 10pt; }
+.policy { line-height: 1.65; }
+.policy p { margin: 12px 0 18px; }
+.policy h2 { margin-top: 20px; }
+section { margin-bottom: 12px; break-inside: avoid; }
+h2 {
+  font-size: 10.5pt;
+  margin: 0 0 8px;
+  padding: 5px 7px;
+  border-left: 3px solid #263c50;
+  background: #eef1f4;
+  line-height: 1.4;
+}
+h2 span { display: block; font-weight: normal; font-size: 10pt; }
+p { margin: 3px 0; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 22px; }
+.wide { grid-column: 1 / -1; }
+label { display: block; }
+input:not([type="checkbox"]):not([type="radio"]) {
+  display: block;
+  width: 100%;
+  height: 24px;
+  border: 0;
+  border-bottom: 1px solid #677580;
+  border-radius: 0;
+  background: transparent;
+  font: inherit;
+}
+input[type="checkbox"], input[type="radio"] {
+  appearance: none;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 1px solid #465360;
+  border-radius: 0;
+  margin: 0 6px 0 0;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+input:checked { background: #263c50; box-shadow: inset 0 0 0 2px white; }
+input:focus-visible { outline: 2px solid #276db0; outline-offset: 2px; }
+.vaccines { display: grid; gap: 4px; margin-top: 7px; }
+.vaccine-row { border-bottom: 1px solid #d3dae0; padding-bottom: 3px; break-inside: avoid; }
+.dose-dates { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px 14px; margin-top: 3px; }
+.dose-dates label { font-size: 8pt; line-height: 1; color: #465360; }
+.dose-dates input:not([type]) { height: 22px; font-size: 10pt; color: #172330; }
+.date-note { font-size: 8.5pt; line-height: 1.35; color: #465360; }
+.other { display: flex; align-items: center; gap: 6px; }
+.other label { white-space: nowrap; }
+.other input:not([type]) { flex: 1; }
+.indent { margin-left: 22px; }
+.certification { margin-top: 12px; }
+.certification input:not([type]) { height: 32px; }
+.school-review { border: 1px solid #677580; padding: 12px; margin-top: 15px; }
+.review-row { margin: 15px 0; display: flex; align-items: center; gap: 18px; }
+.review-date { max-width: 65%; }
+footer { position: absolute; bottom: 0; width: 100%; border-top: 1px solid #a4aeb7; padding-top: 6px; font-size: 8pt; color: #465360; }
+footer span { float: right; }
+@media screen {
+  .sheet { outline: 1px solid #c7cdd3; }
+  @media (max-width: 740px) {
+    body { padding: 12px; }
+    .sheet { width: 100%; height: auto; min-height: 9.9in; padding-bottom: 45px; }
+    .grid, .vaccines { grid-template-columns: 1fr; }
+    .dose-dates { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .review-row { flex-wrap: wrap; }
+    .letterhead { margin-left: 0; gap: 8pt; }
+    .school { font-size: 12pt; }
+    .motto { font-size: 8pt; white-space: normal; }
+  }
+}
+@media print {
+  body { background: white; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .sheet { margin: 0; }
+}

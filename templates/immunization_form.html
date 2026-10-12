@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Joy Academy Online — Student Immunization Record Form</title>
+  <link rel="stylesheet" href="../styles/immunization_form.css">
+</head>
+<body>
+<main>
+  <article class="sheet">
+    <header>
+      <div class="letterhead">
+        <img src="../logo.png" alt="Joy Academy Online" class="form-logo">
+        <div><div class="school">JOY ACADEMY ONLINE</div><div class="motto">SEEK TRUTH · KNOW THYSELF · SERVE OTHERS</div></div>
+      </div>
+      <h1>STUDENT IMMUNIZATION RECORD FORM</h1>
+      <p lang="zh-CN" class="subtitle">美嘉在线学堂学生疫苗接种记录表</p>
+    </header>
+    <section class="policy">
+      <h2>Immunization Records Policy</h2>
+      <p>All enrolled students must provide an official immunization record or equivalent vaccination history from a physician, clinic, hospital, school, government health authority, or other recognized medical source. International students may submit official vaccination records issued in their country or region of residence.</p>
+      <p>Joy Academy Online maintains immunization records as part of each student's permanent cumulative record. Families are responsible for ensuring that submitted records are accurate and current. Students with medical exemptions must provide supporting documentation from a licensed healthcare provider.</p>
+      <h2 lang="zh-CN">疫苗接种记录政策</h2>
+      <p lang="zh-CN">所有注册学生均须提交由医生、诊所、医院、学校、政府卫生机构或其他认可医疗机构出具的正式疫苗接种记录或疫苗接种历史证明。国际学生可提交其居住国家或地区认可机构签发的疫苗接种记录。</p>
+      <p lang="zh-CN">美嘉在线学堂将把疫苗接种记录作为学生永久学籍档案的一部分予以保存。家长有责任确保所提交记录真实、准确且为最新版本。如学生申请医疗豁免，须提交持牌医疗机构或医生出具的相关证明文件。</p>
+    </section>
+    <section>
+      <h2>Student Information <span lang="zh-CN">学生信息</span></h2>
+      <div class="grid">
+        <label class="wide">Student Name <span lang="zh-CN">学生姓名：</span><input name="student_name" aria-label="Student Name / 学生姓名"></label>
+        <label>Date of Birth <span lang="zh-CN">出生日期：</span><input name="date_of_birth" aria-label="Date of Birth / 出生日期"></label>
+        <label>Grade Level <span lang="zh-CN">年级：</span><input name="grade_level" aria-label="Grade Level / 年级"></label>
+        <label>Country of Residence <span lang="zh-CN">居住国家：</span><input name="country_of_residence" aria-label="Country of Residence / 居住国家"></label>
+        <label>School Year <span lang="zh-CN">学年：</span><input name="school_year" aria-label="School Year / 学年"></label>
+      </div>
+    </section>
+    <footer>JOY ACADEMY ONLINE <span>1 / 4</span></footer>
+  </article>
+  <article class="sheet">
+    <header class="continued">
+      <div class="letterhead">
+        <img src="../logo.png" alt="Joy Academy Online" class="form-logo">
+        <div><div class="school">JOY ACADEMY ONLINE</div><div class="motto">SEEK TRUTH · KNOW THYSELF · SERVE OTHERS</div></div>
+      </div>
+      <div class="form-title">STUDENT IMMUNIZATION RECORD FORM</div>
+      <p lang="zh-CN" class="subtitle">美嘉在线学堂学生疫苗接种记录表</p>
+    </header>
+    <section>
+      <h2>IMMUNIZATION DOCUMENTATION <span lang="zh-CN">疫苗接种记录</span></h2>
+      <p>Please attach an official immunization record issued by a physician, clinic, hospital, school, or government health authority.</p>
+      <p lang="zh-CN">请附上由医生、诊所、医院、学校或政府卫生机构出具的正式疫苗接种记录。</p>
+    </section>
+    <section>
+      <h2>Vaccines Included in Attached Record <span lang="zh-CN">所附记录中包含的疫苗</span></h2>
+      <p class="date-note">Copy dates from the attached record (YYYY-MM-DD). Date spaces are not required dose counts; leave unused spaces blank. Additional dates may remain in the attached record.</p>
+      <p class="date-note" lang="zh-CN">请按所附记录填写接种日期（年-月-日）。日期栏数量不代表必需剂次；未使用的栏位留空。更多日期可保留在所附记录中。</p>
+      <div class="vaccines">
+        <div class="vaccine-row">
+          <label><input type="checkbox" name="vaccine_dtap"> DTaP / DTP / Tdap（白喉、破伤风、百日咳）</label>
+          <div class="dose-dates">
+            <label>DTaP/DTP 1<input name="dtap_date_1" aria-label="DTaP / DTP dose 1 date / 第1剂日期"></label>
+            <label>DTaP/DTP 2<input name="dtap_date_2" aria-label="DTaP / DTP dose 2 date / 第2剂日期"></label>
+            <label>DTaP/DTP 3<input name="dtap_date_3" aria-label="DTaP / DTP dose 3 date / 第3剂日期"></label>
+            <label>DTaP/DTP 4<input name="dtap_date_4" aria-label="DTaP / DTP dose 4 date / 第4剂日期"></label>
+            <label>DTaP/DTP 5<input name="dtap_date_5" aria-label="DTaP / DTP dose 5 date / 第5剂日期"></label>
+            <label>Tdap<input name="tdap_date_1" aria-label="Tdap date / Tdap 接种日期"></label>
+          </div>
+        </div>
+        <div class="vaccine-row">
+          <label><input type="checkbox" name="vaccine_polio"> Polio（脊髓灰质炎）</label>
+          <div class="dose-dates">
+            <label>1 / 第1剂<input name="polio_date_1" aria-label="Polio dose 1 date / 第1剂日期"></label>
+            <label>2 / 第2剂<input name="polio_date_2" aria-label="Polio dose 2 date / 第2剂日期"></label>
+            <label>3 / 第3剂<input name="polio_date_3" aria-label="Polio dose 3 date / 第3剂日期"></label>
+            <label>4 / 第4剂<input name="polio_date_4" aria-label="Polio dose 4 date / 第4剂日期"></label>
+          </div>
+        </div>
+        <div class="vaccine-row">
+          <label><input type="checkbox" name="vaccine_hepatitis_b"> Hepatitis B（乙型肝炎）</label>
+          <div class="dose-dates">
+            <label>1 / 第1剂<input name="hepatitis_b_date_1" aria-label="Hepatitis B dose 1 date / 第1剂日期"></label>
+            <label>2 / 第2剂<input name="hepatitis_b_date_2" aria-label="Hepatitis B dose 2 date / 第2剂日期"></label>
+            <label>3 / 第3剂<input name="hepatitis_b_date_3" aria-label="Hepatitis B dose 3 date / 第3剂日期"></label>
+            <label>4 / 第4剂<input name="hepatitis_b_date_4" aria-label="Hepatitis B dose 4 date / 第4剂日期"></label>
+          </div>
+        </div>
+        <div class="vaccine-row">
+          <label><input type="checkbox" name="vaccine_mmr"> MMR（麻疹、腮腺炎、风疹）</label>
+          <div class="dose-dates">
+            <label>1 / 第1剂<input name="mmr_date_1" aria-label="MMR dose 1 date / 第1剂日期"></label>
+            <label>2 / 第2剂<input name="mmr_date_2" aria-label="MMR dose 2 date / 第2剂日期"></label>
+          </div>
+        </div>
+        <div class="vaccine-row">
+          <label><input type="checkbox" name="vaccine_varicella"> Varicella（水痘）</label>
+          <div class="dose-dates">
+            <label>1 / 第1剂<input name="varicella_date_1" aria-label="Varicella dose 1 date / 第1剂日期"></label>
+            <label>2 / 第2剂<input name="varicella_date_2" aria-label="Varicella dose 2 date / 第2剂日期"></label>
+          </div>
+        </div>
+        <div class="vaccine-row">
+          <label><input type="checkbox" name="vaccine_hepatitis_a"> Hepatitis A（甲型肝炎）</label>
+          <div class="dose-dates">
+            <label>1 / 第1剂<input name="hepatitis_a_date_1" aria-label="Hepatitis A dose 1 date / 第1剂日期"></label>
+            <label>2 / 第2剂<input name="hepatitis_a_date_2" aria-label="Hepatitis A dose 2 date / 第2剂日期"></label>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer>JOY ACADEMY ONLINE <span>2 / 4</span></footer>
+  </article>
+  <article class="sheet">
+    <header class="continued">
+      <div class="letterhead">
+        <img src="../logo.png" alt="Joy Academy Online" class="form-logo">
+        <div><div class="school">JOY ACADEMY ONLINE</div><div class="motto">SEEK TRUTH · KNOW THYSELF · SERVE OTHERS</div></div>
+      </div>
+      <div class="form-title">STUDENT IMMUNIZATION RECORD FORM</div>
+      <p lang="zh-CN" class="subtitle">美嘉在线学堂学生疫苗接种记录表</p>
+    </header>
+    <section>
+      <h2>Vaccines Included in Attached Record <span lang="zh-CN">所附记录中包含的疫苗</span></h2>
+      <p class="date-note">Dates / 接种日期：YYYY-MM-DD. Spaces are not required dose counts. Additional dates may remain in the attached record.</p>
+      <p class="date-note" lang="zh-CN">日期栏数量不代表必需剂次；未使用的栏位留空。更多日期可保留在所附记录中。</p>
+      <div class="vaccines">
+        <div class="vaccine-row">
+          <label><input type="checkbox" name="vaccine_hib"> Hib（B型流感嗜血杆菌）</label>
+          <div class="dose-dates">
+            <label>1 / 第1剂<input name="hib_date_1" aria-label="Hib dose 1 date / 第1剂日期"></label>
+            <label>2 / 第2剂<input name="hib_date_2" aria-label="Hib dose 2 date / 第2剂日期"></label>
+            <label>3 / 第3剂<input name="hib_date_3" aria-label="Hib dose 3 date / 第3剂日期"></label>
+            <label>4 / 第4剂<input name="hib_date_4" aria-label="Hib dose 4 date / 第4剂日期"></label>
+          </div>
+        </div>
+        <div class="vaccine-row">
+          <label><input type="checkbox" name="vaccine_pneumococcal"> Pneumococcal（肺炎球菌）</label>
+          <div class="dose-dates">
+            <label>1 / 第1剂<input name="pneumococcal_date_1" aria-label="Pneumococcal dose 1 date / 第1剂日期"></label>
+            <label>2 / 第2剂<input name="pneumococcal_date_2" aria-label="Pneumococcal dose 2 date / 第2剂日期"></label>
+            <label>3 / 第3剂<input name="pneumococcal_date_3" aria-label="Pneumococcal dose 3 date / 第3剂日期"></label>
+            <label>4 / 第4剂<input name="pneumococcal_date_4" aria-label="Pneumococcal dose 4 date / 第4剂日期"></label>
+          </div>
+        </div>
+        <div class="vaccine-row">
+          <label><input type="checkbox" name="vaccine_meningococcal"> Meningococcal（脑膜炎球菌）</label>
+          <div class="dose-dates">
+            <label>MenACWY 1<input name="menacwy_date_1" aria-label="MenACWY dose 1 date / 第1剂日期"></label>
+            <label>MenACWY 2<input name="menacwy_date_2" aria-label="MenACWY dose 2 date / 第2剂日期"></label>
+            <label>MenB 1<input name="menb_date_1" aria-label="MenB dose 1 date / 第1剂日期"></label>
+            <label>MenB 2<input name="menb_date_2" aria-label="MenB dose 2 date / 第2剂日期"></label>
+            <label>MenB 3<input name="menb_date_3" aria-label="MenB dose 3 date / 第3剂日期"></label>
+          </div>
+        </div>
+        <div class="vaccine-row">
+          <label><input type="checkbox" name="vaccine_hpv"> HPV（人乳头瘤病毒）</label>
+          <div class="dose-dates">
+            <label>1 / 第1剂<input name="hpv_date_1" aria-label="HPV dose 1 date / 第1剂日期"></label>
+            <label>2 / 第2剂<input name="hpv_date_2" aria-label="HPV dose 2 date / 第2剂日期"></label>
+            <label>3 / 第3剂<input name="hpv_date_3" aria-label="HPV dose 3 date / 第3剂日期"></label>
+          </div>
+        </div>
+        <div class="vaccine-row">
+          <label><input type="checkbox" name="vaccine_influenza"> Influenza（流感）</label>
+          <p class="date-note">Latest season / 最近接种季节</p>
+          <div class="dose-dates">
+            <label>Date 1 / 日期1<input name="influenza_date_1" aria-label="Influenza latest season date 1 / 最近季节日期1"></label>
+            <label>Date 2 / 日期2<input name="influenza_date_2" aria-label="Influenza latest season date 2 / 最近季节日期2"></label>
+          </div>
+        </div>
+        <div class="vaccine-row">
+          <label><input type="checkbox" name="vaccine_covid19"> COVID-19（新冠疫苗）</label>
+          <p class="date-note">Recent entries; no fixed total / 最近接种记录；不设固定总剂次</p>
+          <div class="dose-dates">
+            <label>Date 1 / 日期1<input name="covid19_date_1" aria-label="COVID-19 recent date 1 / 最近日期1"></label>
+            <label>Date 2 / 日期2<input name="covid19_date_2" aria-label="COVID-19 recent date 2 / 最近日期2"></label>
+            <label>Date 3 / 日期3<input name="covid19_date_3" aria-label="COVID-19 recent date 3 / 最近日期3"></label>
+          </div>
+        </div>
+        <div class="vaccine-row">
+          <div class="other"><label><input type="checkbox" name="vaccine_other"> Other <span lang="zh-CN">其他：</span></label><input name="other_vaccine" aria-label="Other vaccine / 其他疫苗"></div>
+          <div class="dose-dates">
+            <label>Date 1 / 日期1<input name="other_date_1" aria-label="Other vaccine date 1 / 其他疫苗日期1"></label>
+            <label>Date 2 / 日期2<input name="other_date_2" aria-label="Other vaccine date 2 / 其他疫苗日期2"></label>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h2>MEDICAL EXEMPTION <span lang="zh-CN">医疗豁免</span></h2>
+      <label class="check"><input type="checkbox" name="medical_exemption"> Student has a medical exemption.</label>
+      <p lang="zh-CN" class="indent">该学生具有医疗豁免。</p>
+      <p>Please attach supporting documentation from a licensed healthcare provider.</p>
+      <p lang="zh-CN">请附上持牌医疗机构或医生签发的证明文件。</p>
+    </section>
+    <footer>JOY ACADEMY ONLINE <span>3 / 4</span></footer>
+  </article>
+  <article class="sheet">
+    <header class="continued">
+      <div class="letterhead">
+        <img src="../logo.png" alt="Joy Academy Online" class="form-logo">
+        <div><div class="school">JOY ACADEMY ONLINE</div><div class="motto">SEEK TRUTH · KNOW THYSELF · SERVE OTHERS</div></div>
+      </div>
+      <div class="form-title">STUDENT IMMUNIZATION RECORD FORM</div>
+      <p lang="zh-CN" class="subtitle">美嘉在线学堂学生疫苗接种记录表</p>
+    </header>
+    <section>
+      <h2>PARENT / GUARDIAN CERTIFICATION <span lang="zh-CN">家长或监护人声明</span></h2>
+      <p>I certify that the attached immunization record is a true and accurate copy of my student's vaccination history.</p>
+      <p lang="zh-CN">本人确认所提交的疫苗接种记录是真实且准确的副本。</p>
+      <p>I understand that Joy Academy Online will maintain this documentation as part of the student's permanent cumulative record and may disclose information as required by applicable law.</p>
+      <p lang="zh-CN">本人理解，美嘉在线学堂（Joy Academy Online）将把该文件作为学生永久学籍档案的一部分保存，并在法律要求时依法提供相关信息。</p>
+      <div class="grid certification">
+        <label class="wide">Parent / Guardian Name <span lang="zh-CN">家长或监护人姓名</span><input name="parent_guardian_name" aria-label="Parent / Guardian Name / 家长或监护人姓名"></label>
+        <label>Signature <span lang="zh-CN">签名</span><input name="parent_guardian_signature" aria-label="Signature / 签名"></label>
+        <label>Date <span lang="zh-CN">日期</span><input name="certification_date" aria-label="Date / 日期"></label>
+      </div>
+    </section>
+    <section>
+      <h2>REQUIRED ATTACHMENTS <span lang="zh-CN">需提交附件</span></h2>
+      <label class="check"><input type="checkbox" name="attachment_record"> Copy of official immunization record</label>
+      <p lang="zh-CN" class="indent">疫苗接种记录复印件</p>
+      <label class="check"><input type="checkbox" name="attachment_exemption"> Medical exemption documentation (if applicable)</label>
+      <p lang="zh-CN" class="indent">医疗豁免证明（如适用）</p>
+    </section>
+    <section class="school-review">
+      <h2>SCHOOL USE ONLY <span lang="zh-CN">学校填写</span></h2>
+      <div class="grid">
+        <label>Date Received：<input name="date_received" aria-label="Date Received"></label>
+        <label>Reviewed By：<input name="reviewed_by" aria-label="Reviewed By"></label>
+      </div>
+      <div class="review-row">
+        <div>Record Complete：</div>
+        <label><input type="radio" name="record_complete" value="Yes"> Yes / 是</label>
+        <label><input type="radio" name="record_complete" value="No"> No / 否</label>
+      </div>
+      <div class="review-row">
+        <div>Filed in Permanent Cumulative Record：</div>
+        <label><input type="radio" name="filed_permanent_record" value="Yes"> Yes / 是</label>
+        <label><input type="radio" name="filed_permanent_record" value="No"> No / 否</label>
+      </div>
+      <label class="review-date">Review Date：<input name="review_date" aria-label="Review Date"></label>
+    </section>
+    <footer>JOY ACADEMY ONLINE <span>4 / 4</span></footer>
+  </article>
+</main>
+</body>
+</html>
