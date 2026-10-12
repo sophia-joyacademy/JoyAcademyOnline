@@ -2,6 +2,31 @@
 
 ## Deliverables
 
+- `output/Joy_Academy_Immunization_Packet_EN.pdf`: five-page English-only mailing
+  packet containing the English cover letter and the four-page English-only
+  record form. The letter refers to the attached form, directs families to
+  submit the signed form and vaccination records to the school, and links to
+  the English immunization information page.
+- `output/Joy_Academy_Immunization_Packet_ZH.pdf`: five-page Chinese mailing
+  packet containing the revised Chinese cover letter followed by the complete
+  four-page bilingual record form. The Chinese letter uses two-character
+  first-line indents for body paragraphs, a date above the school signature, and a clickable school
+  information link. Salutation, right-aligned signature/date, and reference
+  are formatted separately from body paragraphs.
+- `output/Joy_Academy_Immunization_Cover_Letter_EN.pdf` and
+  `output/Joy_Academy_Immunization_Cover_Letter_ZH.pdf`: one-page English and
+  Chinese parent cover letters, dated October 12, 2026, using the same letterhead
+  as the record forms. Both letter bodies have 0.75-inch left and right margins;
+  the shared letterhead and attached record forms retain their existing layout.
+  HTML sources are in `templates/immunization_cover_letter_*.html`.
+  The letters request records, signatures, and applicable exemption documentation;
+  no deadline, new submission channel, or vaccination mandate is invented.
+  They cite [CDPH's California School Immunization Law explanation](https://www.cdph.ca.gov/Programs/CID/DCDC/Pages/Immunization/School/laws-california-law.aspx),
+  not a blanket CDE mandate for overseas/online students. CDPH's general
+  recordkeeping statement is distinguished from classroom-based entry requirements.
+  Confirm the applicable legal scope and school submission arrangements before
+  distribution. The letters are not automatically published as new website links.
+
 - `immunization-requirement.html` and `zh/immunization-requirement.html`: linked
   third under Parent Resources / Key Documents, after Student Handbook and
   Program of Studies. Each page lists the form preview before the PDF download.

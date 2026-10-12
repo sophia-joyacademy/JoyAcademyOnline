@@ -83,6 +83,21 @@ input:focus-visible { outline: 2px solid #276db0; outline-offset: 2px; }
 .review-date { max-width: 65%; }
 footer { position: absolute; bottom: 0; width: 100%; border-top: 1px solid #a4aeb7; padding-top: 6px; font-size: 8pt; color: #465360; }
 footer span { float: right; }
+.cover-letter { font-size: 10pt; line-height: 1.5; }
+.cover-letter h1 { font-size: 15pt; }
+.cover-letter section { margin-left: 0.2in; margin-right: 0.2in; }
+.cover-letter p { margin: 8px 0; }
+.cover-letter ol { margin: 8px 0; padding-left: 22px; }
+.cover-letter li { margin: 5px 0; }
+.cover-letter .letter-date { text-align: right; }
+.cover-letter .letter-source { margin-top: 12px; font-size: 8pt; }
+.cover-letter-zh section > p { text-indent: 2em; }
+.cover-letter-zh section > .salutation,
+.cover-letter-zh section > .signature,
+.cover-letter-zh section > .letter-date,
+.cover-letter-zh section > .letter-source { text-indent: 0; }
+.cover-letter-zh .signature { text-align: right; }
+.cover-letter-zh .letter-date { margin-top: calc(8px + 1.5em); }
 @media screen {
   .sheet { outline: 1px solid #c7cdd3; }
   @media (max-width: 740px) {
